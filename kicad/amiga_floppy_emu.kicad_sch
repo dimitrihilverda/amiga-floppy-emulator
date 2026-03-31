@@ -1,0 +1,23 @@
+(kicad_sch (version 20230121) (generator eeschema)
+
+  (uuid "a1b2c3d4-e5f6-7890-abcd-ef1234567890")
+
+  (paper "A4")
+
+  (title_block
+    (title "Amiga Floppy Emulator - ESP32-S3")
+    (date "2026-03-30")
+    (rev "1.0")
+    (comment 1 "ESP32-S3 Mini + 2x 74HCT125 Level Shifters")
+    (comment 2 "34-pin IDC Floppy Connector to Commodore Amiga")
+    (comment 3 "Design by Dimmy / Moving-In")
+  )
+
+  (lib_symbols
+  )
+
+  ; Note: This is a structural KiCad schematic.
+  ; Symbols need to be resolved from KiCad libraries.
+  ; Below is the netlist and connections as reference.
+
+)
