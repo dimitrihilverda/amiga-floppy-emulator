@@ -1,42 +1,61 @@
 ================================================================
 ARDUINO IDE 2.x - Board Settings voor Amiga Floppy Emulator
+Hardware: Lolin S3 Mini (ESP32-S3FH4R2, 4MB Flash, 2MB PSRAM)
 ================================================================
 
 1. BOARD MANAGER
-   - Open: Tools → Board → Board Manager
+   - Open: Tools > Board > Board Manager
    - Zoek: "esp32" door Espressif Systems
-   - Installeer versie 2.0.x (NIET 3.x, die heeft breaking API changes)
+   - Installeer versie 2.0.x (NIET 3.x, breaking API changes)
 
 2. BOARD SELECTIE
-   - Tools → Board → ESP32S3 Dev Module
+   - Tools > Board > esp32 > LOLIN S3 Mini
+
+   Als "LOLIN S3 Mini" niet in de lijst staat:
+   - Kies: "ESP32S3 Dev Module" en stel onderstaande handmatig in
 
 3. BOARD SETTINGS (Tools menu)
-   - Board:              ESP32S3 Dev Module
+   - Board:              LOLIN S3 Mini (of ESP32S3 Dev Module)
    - USB CDC On Boot:    Enabled
-   - USB Mode:           Hardware CDC and JTAG
-   - Flash Size:         8MB (64Mb)
-   - Partition Scheme:   8M with spiffs (3MB APP/1.5MB SPIFFS)
-   - PSRAM:              OPI PSRAM
-   - Upload Speed:       921600
    - CPU Frequency:      240MHz (WiFi)
+   - Flash Mode:         QIO 80MHz
+   - Flash Size:         4MB (32Mb)
+   - Partition Scheme:   Default 4MB with spiffs (1.2MB APP/1.5MB SPIFFS)
+   - PSRAM:              QSPI PSRAM
+   - Upload Speed:       921600
+   - USB Mode:           Hardware CDC and JTAG
+
+   BELANGRIJK: PSRAM moet op "QSPI PSRAM" staan, NIET OPI!
+   De S3FH4R2 heeft Quad-SPI PSRAM, geen Octal.
 
 4. POORT
    - Selecteer de COM-poort van je ESP32-S3
+   - Als hij niet verschijnt: houd BOOT ingedrukt + druk RESET
 
 5. EERSTE UPLOAD
-   - Houd de BOOT knop ingedrukt op de ESP32-S3
-   - Klik Upload in Arduino IDE
-   - Laat BOOT los zodra "Connecting..." verschijnt
+   - Klik Upload (pijltje) in Arduino IDE
+   - Als "Connecting..." blijft hangen:
+     houd BOOT knop ingedrukt, druk kort RESET, laat BOOT los
+   - Na eerste upload is dit niet meer nodig
 
 6. SERIAL MONITOR
-   - Tools → Serial Monitor
+   - Tools > Serial Monitor
    - Baudrate: 115200
-   - Je ziet de MFM self-test resultaten en WiFi status
+   - Je ziet: MFM self-test, PSRAM info, WiFi AP status
 
 7. GEBRUIK
-   - Verbind je telefoon met WiFi "AmigaFloppy" (ww: amiga1200)
-   - Open http://192.168.4.1
-   - Upload een .ADF bestand
-   - Verbind de ESP32 met de Amiga floppy poort
+   - Verbind telefoon met WiFi "AmigaFloppy" (wachtwoord: amiga1200)
+   - Open http://192.168.4.1 in je browser
+   - Upload een .ADF bestand (max 880KB)
+   - Verbind ESP32 met Amiga floppy poort via level shifters
 
+================================================================
+GEHEUGEN BUDGET (2MB PSRAM)
+================================================================
+   ADF buffer:      901 KB
+   MFM track buf:    13 KB
+   WiFi + WebUI:   ~200 KB
+   Overhead:       ~100 KB
+   -------------------------
+   Totaal:        ~1.2 MB van 2 MB beschikbaar
 ================================================================

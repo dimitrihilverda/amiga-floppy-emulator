@@ -56,7 +56,8 @@
 #define WEB_PORT        80
 
 // --- Buffer Configuration ---
-// With 8MB PSRAM we can buffer the entire ADF in memory
+// Lolin S3 Mini (ESP32-S3FH4R2): 4MB Flash, 2MB PSRAM
+// Memory budget: ADF=901KB + MFM=13KB + WebUI/WiFi ~200KB = ~1.1MB → past in 2MB
 #define USE_PSRAM        true
 
 #endif // CONFIG_H
