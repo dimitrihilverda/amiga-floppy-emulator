@@ -17,3 +17,6 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+# Claude session memory (niet mee-committen)
+CLAUDE_MEMORY.md
